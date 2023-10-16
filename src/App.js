@@ -3,34 +3,27 @@ import './App.css';
 import Product from './Product';
 import AddProduct from './AddProduct';
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProduct, addProduct, fetchProducts } from "./reducer";
+import {useSelector } from "react-redux";
+import { selectProducts, selectLoadingState } from "./reducers/productsSlice";
 import axios from 'axios';
 
 
 function App() {
 
   //const [isLoading, setLoading] = useState(true);
-  const [myProducts, setMyProducts] = useState();
+  //const [myProducts, setMyProducts] = useState();
   //const apiUrl = 'http://localhost:3000/products/';
 
-  const dispatch = useDispatch();
-  const { product, products, loading, error } = useSelector(state => state.product);
-
-  useEffect(() => {
-    dispatch(fetchProduct());
-    dispatch(fetchProducts());
-    console.log(products);
-  }, [])
-
-  if (loading) {
+  const myProducts = useSelector(selectProducts);
+  console.log(myProducts);
+  
+  if(selectLoadingState){
     return <div className="App">Loading...</div>;
   }
-
   return (
     <div>
-      <AddProduct productsNumber={products.length}></AddProduct>
-      {products?.map((product, i) => (
+      <AddProduct productsNumber={myProducts.length}></AddProduct>
+      {myProducts.map((product, i) => (
         <Product key={i} title={product.title} description={product.description}
           categories={product.categories.toString()} basePrice={product.basePrice}
           salePrice={product.salePrice} imageUrl={product.imageUrl}>
