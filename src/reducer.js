@@ -1,23 +1,59 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
 const initialState = {
-    todos: [
-      { id: 0, text: 'Learn React', completed: true },
-      { id: 1, text: 'Learn Redux', completed: false, color: 'purple' },
-      { id: 2, text: 'Build something fun!', completed: false, color: 'blue' }
-    ],
-    filters: {
-      status: 'All',
-      colors: []
+    product: '',
+    products: [],
+    loading: false,
+    error: ''
+}
+
+export const fetchProduct = createAsyncThunk('product/fetch', async () => {
+    const response = await axios.get('http://localhost:3000/products/');
+    //console.log(response.data);
+    return response.data;
+});
+
+const productSlice =  createSlice({
+    name: 'product',
+    initialState,
+    reducers: {
+        addProduct(state, action){
+            const product = action.payload;
+            const fetchedproducts = JSON.parse(localStorage.getItem('products')) || [];
+            let exists = fetchedproducts.find(item => item === product);
+            if(exists) {
+                alert('product already saved!')
+            }else{
+                const updatedproducts = [...state.products, product];
+                state.products = updatedproducts;
+                localStorage.setItem('products', JSON.stringify(state.products));
+                alert('product saved');
+            }
+        },
+        fetchProducts(state, action){
+            const fetchedproducts = JSON.parse(localStorage.getItem('products')) || [];
+            state.products = fetchedproducts;
+        },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchProduct.pending, (state, action) => {
+            state.loading = true;
+        });
+        builder.addCase(fetchProduct.fulfilled, (state, action) => {
+            state.loading = false;
+            state.product = action.payload.value;
+        });
+        builder.addCase(fetchProduct.rejected, (state, action) => {
+            state.loading = false;
+            state.product = '';
+            state.error = action.error.message;
+        });
     }
-  }
-  
-  // Use the initialState as a default value
-  export default function appReducer(state = initialState, action) {
-    // The reducer normally looks at the action type field to decide what happens
-    switch (action.type) {
-      // Do something here based on the different types of actions
-      default:
-        // If this reducer doesn't recognize the action type, or doesn't
-        // care about this specific action, return the existing state unchanged
-        return state
-    }
-  }
+});
+
+export const { addproduct, fetchProducts } = productSlice.actions;
+
+const productReducer = productSlice.reducer;
+
+export default productReducer;
