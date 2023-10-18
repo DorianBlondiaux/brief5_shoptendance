@@ -11,7 +11,7 @@ function App() {
  
   return (
     <div>
-      <section class="articles">
+      <section className="articles">
         {!isEmpty(products) && products.map((product, i) => (
           <Product key={i} title={product.title} description={product.description}
             categories={product.categories.toString()} basePrice={product.basePrice}

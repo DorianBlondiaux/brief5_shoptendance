@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { useDispatch} from "react-redux";
 import { addProduct, getProducts } from "./actions/product.action";
-import { useForm, FormProvider, useFormContext } from "react-hook-form"
 
 function AddProduct(props) {
 
@@ -13,7 +12,6 @@ function AddProduct(props) {
     const salePriceRef = useRef(null);
     const imageRef = useRef(null);
 
-    const { register } = useFormContext()
     const dispatch = useDispatch();
 
     async function handleSubmit(event) {
@@ -39,51 +37,49 @@ function AddProduct(props) {
     }
 
     return (
-        <div class="container">
+        <div className="container">
             <form ref={form} onSubmit={(event) => handleSubmit(event)}>
 
-                <div class="form-row">
-                    <label for="title">Titre:</label>
+                <div className="form-row">
+                    <label htmlFor="title">Titre:</label>
 
-                    <div class="input-data">
-                        <input ref={titleRef} type="text" id="title" name="title" 
-                            
-                        />
+                    <div className="input-data">
+                        <input ref={titleRef} type="text" id="title" name="title"/>
                     </div>
                 </div>
 
-                <div class="form-row">
+                <div className="form-row">
 
-                    <label for="description">Description:</label>
-                    <div class="input-data">
+                    <label htmlFor="description">Description:</label>
+                    <div className="input-data">
                         <input ref={descriptionRef} type="text" id="description" name="description" />
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <label for="categories">Categories:</label>
-                    <div class="input-data">
+                <div className="form-row">
+                    <label htmlFor="categories">Categories:</label>
+                    <div className="input-data">
                         <input ref={categoriesRef} type="text" id="categories" name="catgories" />
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <label for="basePrice">Prix de base:</label>
-                    <div class="input-data">
+                <div className="form-row">
+                    <label htmlFor="basePrice">Prix de base:</label>
+                    <div className="input-data">
                         <input ref={basePriceRef} type="text" id="basePrice" name="basePrice" />
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <label for="salePrice">Prix réduit:</label>
-                    <div class="input-data">
+                <div className="form-row">
+                    <label htmlFor="salePrice">Prix réduit:</label>
+                    <div className="input-data">
                         <input ref={salePriceRef} type="text" id="salePrice" name="salePrice" />
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <label for="image">Image:</label>
-                    <div class="input-data">
+                <div className="form-row">
+                    <label htmlFor="image">Image:</label>
+                    <div className="input-data">
                         <input ref={imageRef} type="text" id="image" name="image" />
                     </div>
                 </div>
