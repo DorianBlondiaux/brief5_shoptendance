@@ -1,5 +1,6 @@
 import React, {useRef} from "react";
-import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct, getProducts } from "./actions/product.action";
 
 function AddProduct(props) {
 
@@ -10,8 +11,10 @@ function AddProduct(props) {
     const salePriceRef = useRef(null);
     const imageRef = useRef(null);
 
-    function handleSubmit(event) {
-        console.log(props.productsNumber);
+    const product = useSelector((state) => state.productReducer);
+    const dispatch = useDispatch();
+
+    async function handleSubmit(event) {
         const product = { "id": props.productsNumber+1,
         "title": titleRef.current.value,
         "description": descriptionRef.current.value,
@@ -19,8 +22,12 @@ function AddProduct(props) {
         "basePrice": basePriceRef.current.value,
         "salePrice": salePriceRef.current.value,
         "imageUrl": imageRef.current.value };
-    axios.post('http://localhost:3000/products/', product)
-        .then();
+
+        await dispatch(addProduct(product));
+        dispatch(getProducts());
+
+    // axios.post('http://localhost:3000/products/', product)
+    //     .then();
     
         event.preventDefault();
       }

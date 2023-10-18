@@ -4,10 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './store';
-import { fetchProducts } from './reducers/productsSlice'
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./reducers";
+import { getProducts } from "./actions/product.action";
 
-store.dispatch(fetchProducts());
+const store = configureStore({
+  reducer: rootReducer,
+  devTools: true,
+});
+
+store.dispatch(getProducts());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
