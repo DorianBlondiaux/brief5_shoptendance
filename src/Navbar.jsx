@@ -9,7 +9,7 @@ export const Navbar = () => {
 
     return (
         <ul>
-            {categories.map((elem) => <li><Link to={`filter/${elem}`}>{elem}</Link></li>)}
+            {categories.map((elem) => <li><Link to={`/filter/${elem}`}>{elem}</Link></li>)}
         </ul>
     )
 }
