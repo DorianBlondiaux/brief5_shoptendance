@@ -24,7 +24,7 @@ export default function productReducer(state = initialState, action) {
         } else return product;
       });
     case DELETE_PRODUCT:
-      return state.filter((product) => product.id != action.payload);
+      return state.filter((product) => product.id !== action.payload);
     case ADD_PRODUCT_LIKE:
       return state.map((product) => {
         if (product.id === action.payload.id) {
