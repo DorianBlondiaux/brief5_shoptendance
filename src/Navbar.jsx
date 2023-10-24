@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const Navbar = () => {
     
     const products = useSelector((state) => state.productReducer);
-    const categories = [...new Set(products.map((item) => item.categories))];
+    const categories = [...new Set(products.data.map((item) => item.categories))];
 
     return (
         <ul>

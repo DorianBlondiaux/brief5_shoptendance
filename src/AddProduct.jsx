@@ -18,7 +18,6 @@ function AddProduct(props) {
         event.preventDefault();
 
         const product = {
-            "id": props.productsNumber + 1,
             "title": titleRef.current.value,
             "description": descriptionRef.current.value,
             "categories": categoriesRef.current.value,

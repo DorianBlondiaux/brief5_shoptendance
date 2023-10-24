@@ -13,6 +13,6 @@ export const ProductFilter = () => {
     return <div>Loading ...</div>
   }
     return (
-        <Products products={products.filter((product) => product.categories === categorie)}></Products>
+        <Products products={products.data.filter((product) => product.categories === categorie)}></Products>
     )
 }

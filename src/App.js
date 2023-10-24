@@ -20,14 +20,14 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Products products={products}></Products>}
+          element={<Products products={products.data}></Products>}
         ></Route>
         <Route
           path="/filter/:categorie"
           element={<ProductFilter></ProductFilter>}
         ></Route>
       </Routes>
-      <AddProduct productsNumber={products.length}></AddProduct>
+      <AddProduct></AddProduct>
     </BrowserRouter>
   );
 }
