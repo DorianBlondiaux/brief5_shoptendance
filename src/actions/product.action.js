@@ -10,7 +10,8 @@ export const ADD_PRODUCT_LIKE = "ADD_PRODUCT_LIKE";
 export const getProducts = () => {
   return (dispatch) => {
     return axios.get(apiUrl).then((res) => {
-      dispatch({ type: GET_PRODUCTS, payload: res.data });
+      const productsTmp = res.data;
+      dispatch({ type: GET_PRODUCTS, payload: productsTmp.data});
     });
   };
 };

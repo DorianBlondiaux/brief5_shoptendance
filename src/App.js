@@ -12,7 +12,9 @@ function App() {
 
   if (isEmpty(products)) {
     return <div>Loading ...</div>;
-  }
+   }//else{
+  //   console.log(products);
+  // }
 
   return (
     <BrowserRouter>
@@ -20,7 +22,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Products products={products.data}></Products>}
+          element={<Products products={products}></Products>}
         ></Route>
         <Route
           path="/filter/:categorie"

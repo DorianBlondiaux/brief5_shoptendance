@@ -13,7 +13,7 @@ export default function productReducer(state = initialState, action) {
     case GET_PRODUCTS:
       return action.payload;
     case ADD_PRODUCT:
-      return [action.payload, ...state.data];
+      return [action.payload, ...state];
     case EDIT_PRODUCT:
       return state.map((product) => {
         if (product.id === action.payload.id) {
