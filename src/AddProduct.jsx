@@ -22,8 +22,8 @@ function AddProduct(props) {
             "title": titleRef.current.value,
             "description": descriptionRef.current.value,
             "categories": categoriesRef.current.value,
-            "basePrice": basePriceRef.current.value,
-            "salePrice": salePriceRef.current.value,
+            "basePrice": Number(basePriceRef.current.value),
+            "salePrice": Number(salePriceRef.current.value),
             "imageUrl": imageRef.current.value
         };
 
