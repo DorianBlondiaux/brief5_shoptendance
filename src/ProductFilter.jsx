@@ -8,10 +8,7 @@ export const ProductFilter = () => {
 
     const { categorie } = useParams();
     const products = useSelector((state) => state.productReducer);
-
-  if (isEmpty(products)) {
-    return <div>Loading ...</div>
-  }
+    
     return (
         <Products products={products.filter((product) => product.categories === categorie)}></Products>
     )
