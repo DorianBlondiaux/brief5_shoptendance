@@ -12,9 +12,7 @@ function App() {
 
   if (isEmpty(products)) {
     return <div>Loading ...</div>;
-   }//else{
-  //   console.log(products);
-  // }
+   }
 
   return (
     <BrowserRouter>

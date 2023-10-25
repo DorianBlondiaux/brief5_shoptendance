@@ -7,6 +7,7 @@ function Products(props) {
       {props.products.map((product, i) => (
         <Product
           key={i}
+          _id={product._id}
           title={product.title}
           description={product.description}
           categories={product.categories.toString()}

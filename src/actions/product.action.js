@@ -26,8 +26,9 @@ export const addProduct = (data) => {
 
 export const editProduct = (data) => {
   return (dispatch) => {
+    console.log(data);
     return axios
-      .put(apiUrl + data.id, data)
+      .put(apiUrl + '/' + data._id, data)
       .then((res) => {
         dispatch({ type: EDIT_PRODUCT, payload: data });
       });
@@ -36,7 +37,7 @@ export const editProduct = (data) => {
 
 export const deleteProduct = (productId) => {
   return (dispatch) => {
-    return axios.delete(apiUrl + productId).then((res) => {
+    return axios.delete(apiUrl + '/' + productId).then((res) => {
       dispatch({ type: DELETE_PRODUCT, payload: productId });
     });
   };
