@@ -43,15 +43,22 @@ function Product(props) {
     <article>
       <div className="article-wrapper">
         <figure>
-        {isEdit ? <input ref={imageRef} defaultValue={props.imageUrl}></input> : <img src={props.imageUrl} alt="" />}
+        <img src={props.imageUrl} alt="" />
         </figure>
         <div className="article-body">
-          <h4 className="card-content">{isEdit ? <input ref={titleRef} defaultValue={props.title}></input> : props.title}</h4>
-          <div className="card-content">{isEdit ? <input ref={descriptionRef} defaultValue={props.description}></input> : props.description}</div>
+          <div>
+          {isEdit ? <div className="card-content">Titre:<input ref={titleRef} defaultValue={props.title}></input></div> : <h4 className="card-content">{props.title}</h4>}
+          </div>
+          <div>
+          {isEdit ? <div className="card-content">Description: <input ref={descriptionRef} defaultValue={props.description}></input></div> : props.description}
+          </div>
           <div className="card-content">Catégorie: {isEdit ? <input ref={categoriesRef} defaultValue={props.categories}></input> : props.categories}</div>
           <div className="card-content">Prix: {isEdit ? <input ref={basePriceRef} defaultValue={props.basePrice}></input> : props.basePrice}</div>
-          <div className="card-content">Prix avec réduction: {isEdit ? <input ref={salePriceRef} defaultValue={props.salePrice}></input> : props.salePrice}</div>
-          <div className="card-content"><button onClick={() => toggleEdit()}>Editer</button><button onClick={() => deleteProd()}>Supprimer</button></div>
+          <div className="card-content">Prix réduit: {isEdit ? <input ref={salePriceRef} defaultValue={props.salePrice}></input> : props.salePrice}</div>
+          <div>
+          {isEdit ? <div className="card-content">Url Image: <input ref={imageRef} defaultValue={props.imageUrl}></input></div> : "" }
+          </div>
+          <div className="buttons"><button className="edit" onClick={() => toggleEdit()}>Editer</button><button className="delete" onClick={() => deleteProd()}>Supprimer</button></div>
         </div>
       </div>
     </article>

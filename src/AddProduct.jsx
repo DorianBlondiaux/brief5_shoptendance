@@ -84,7 +84,7 @@ function AddProduct(props) {
                 </div>
 
 
-                        <button type="submit">Ajouter le produit</button>
+                        <button className="addProduct" type="submit">Ajouter le produit</button>
             </form>
         </div>
 
